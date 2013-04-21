@@ -21,14 +21,15 @@ TODO Status Codes
 
 ### End points
 
-| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|                    |																																									     |
+| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------  |
 | Path			     | /																																									 |
 | Method		     | GET																																								     |
 | Errors	  	     |																																									     |				
-|     Not Found	     | When file does not exist																																			 |
+|     Not Found	     | When file does not exist																																			     |
 | Parameters	     |  																																									 |			
 |     revisionNumber | (Query) Optional parameter that specifies file revision to be returned.																							     |
-| Description	     | Returns file and file meta-information. If revision number parameter is specified method returns file of that specified revision otherwise last revision is returned |
+| Description	     | Returns file and file meta-information. If revision number parameter is specified method returns file of that specified revision otherwise last revision is returned  |
 
 **Example**
 
