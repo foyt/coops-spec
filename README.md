@@ -20,10 +20,29 @@ TODO Overview
 TODO Status Codes
 
 ### End points
-TODO End points
+
+Path				/
+Method				GET
+Description			Returns file and file meta-information. If revision number parameter is specified method returns file of that specified revision otherwise last revision is returned
+Errors			
+	Not Found 		When file does not exist
+	Unauthorized	When user is not recognized
+	Forbidden		When user does not have permission to file
+Parameters		
+	revisionNumber	(Query) Optional parameter that specifies file revision to be returned.
+	
+    { 
+      "response": {
+        "revisionNumber": 123,
+        "content": "CONTENT",
+        "properties": {
+            "backgroundColor": "green"
+        }
+	  }
+	}
 
 EXTENSIONS
---------
+----------
 TODO Overview
 
 ### WebSocket
