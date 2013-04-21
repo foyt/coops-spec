@@ -25,24 +25,38 @@ TODO Status Codes
   <tr><td>Path</td><td>/</td></tr>
   <tr><td>Method</td><td>GET</td></tr>
   <tr><td>Errors</td><td></td></tr>
-  <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;Not Found</td><td>When file does not exist</td></tr>
+  <tr><td>&nbsp;&nbsp;&nbsp;Not Found</td><td>When file does not exist</td></tr>
   <tr><td>Parameters</td><td>/</td></tr>
-  <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;revisionNumber</td><td>(Query) Optional parameter that specifies file revision to be returned.</td></tr>
+  <tr><td>&nbsp;&nbsp;&nbsp;revisionNumber</td><td>(Query) Optional parameter that specifies file revision to be returned.</td></tr>
   <tr><td>Description</td><td>Returns file and file meta-information. If revision number parameter is specified method returns file of that specified revision otherwise last revision is returned</td></tr>
 </table>
 
-**Example**
+**Response**
+
+<table>
+  <tr><td>fileId</td><td>contains file id. Format of the id depends on implementation</td></tr>
+  <tr><td>revisionNumber</td><td>Revision number of returned file.</td></tr>
+  <tr><td>name</td><td>Name of the file</td></tr>
+  <tr><td>content</td><td>Contents of the file as text. Binary files are serialized into text form</td></tr>
+  <tr><td>contentType</td><td>Content type of the file. If file needs to be edited by some specific editor "editor" -parameter can be used to specify which one</td></tr>
+  <tr><td>properties</td><td>File metadata as key-value pairs.</td></tr>
+</table>
+
+**Example response**
 
     { 
       "response": {
+        "fileId": "112233445566778899aabbcc",
         "revisionNumber": 123,
+        "name": "name",
         "content": "CONTENT",
+        "contentType": "text/html;editor=CKEditor",
         "properties": {
             "backgroundColor": "green"
         }
 	  }
 	}
-
+	
 EXTENSIONS
 ----------
 TODO Overview
