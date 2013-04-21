@@ -21,6 +21,8 @@ TODO Status Codes
 
 ### End points
 
+**(GET) /**
+
 <table>
   <tr><td>Path</td><td>/</td></tr>
   <tr><td>Method</td><td>GET</td></tr>
