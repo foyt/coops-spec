@@ -25,9 +25,9 @@ TODO Status Codes
   <tr><td>Path</td><td>/</td></tr>
   <tr><td>Method</td><td>GET</td></tr>
   <tr><td>Errors</td><td></td></tr>
-  <tr><td>&nbsp;Not Found</td><td>When file does not exist</td></tr>
+  <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;Not Found</td><td>When file does not exist</td></tr>
   <tr><td>Parameters</td><td>/</td></tr>
-  <tr><td>&nbsp;revisionNumber</td><td>(Query) Optional parameter that specifies file revision to be returned.</td></tr>
+  <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;revisionNumber</td><td>(Query) Optional parameter that specifies file revision to be returned.</td></tr>
   <tr><td>Description</td><td>Returns file and file meta-information. If revision number parameter is specified method returns file of that specified revision otherwise last revision is returned</td></tr>
 </table>
 
