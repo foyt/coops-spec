@@ -36,7 +36,46 @@ TODO Status Codes
 **Response**
 
 <table>
-  <tr><td>fileId</td><td>contains file id. Format of the id depends on implementation</td></tr>
+  <tr><td>revisionNumber</td><td>Revision number of returned file.</td></tr>
+  <tr><td>name</td><td>Name of the file</td></tr>
+  <tr><td>content</td><td>Contents of the file as text. Binary files are serialized into text form</td></tr>
+  <tr><td>contentType</td><td>Content type of the file. If file needs to be edited by some specific editor "editor" -parameter can be used to specify which one</td></tr>
+  <tr><td>properties</td><td>File metadata as key-value pairs (JSON Object).</td></tr>
+</table>
+
+**Example response**
+
+    { 
+      "response": {
+        "revisionNumber": 123,
+        "name": "name",
+        "content": "CONTENT",
+        "contentType": "text/html;editor=CKEditor",
+        "properties": {
+            "backgroundColor": "green"
+        }
+	  }
+	}
+	
+**(PATCH) /**
+
+<table>
+  <tr><td>Path</td><td>/</td></tr>
+  <tr><td>Method</td><td>PUT</td></tr>
+  <tr><td>Errors</td><td></td></tr>
+  <tr><td>&nbsp;&nbsp;&nbsp;Not Found</td><td>When file does not exist</td></tr>
+  <tr><td>&nbsp;&nbsp;&nbsp;Conflict</td><td>When server version does not match client version</td></tr>
+  <tr><td>Parameters</td><td>/</td></tr>
+  <tr><td>&nbsp;&nbsp;&nbsp;revisionNumber</td><td>(JSON) number of revision patch is meant for</td></tr>
+  <tr><td>&nbsp;&nbsp;&nbsp;name</td><td>(JSON) optional field that instructs name change if specified</td></tr>
+  <tr><td>&nbsp;&nbsp;&nbsp;patch</td><td>(JSON) optional field that contains changes to content in used diff format</td></tr>
+  <tr><td>&nbsp;&nbsp;&nbsp;properties</td><td>(JSON) optional field that contains changed metadata as key-value pairs (JSON Object)</td></tr>
+  <tr><td>Description</td><td>Patches a file and returns updated file.</td></tr>
+</table>
+
+**Response**
+
+<table>
   <tr><td>revisionNumber</td><td>Revision number of returned file.</td></tr>
   <tr><td>name</td><td>Name of the file</td></tr>
   <tr><td>content</td><td>Contents of the file as text. Binary files are serialized into text form</td></tr>
@@ -48,7 +87,6 @@ TODO Status Codes
 
     { 
       "response": {
-        "fileId": "112233445566778899aabbcc",
         "revisionNumber": 123,
         "name": "name",
         "content": "CONTENT",
@@ -58,10 +96,6 @@ TODO Status Codes
         }
 	  }
 	}
-	
-**(PUT) /**
-
-**(PATCH) /**
 
 **(GET) /join**
 	
