@@ -28,9 +28,7 @@ TODO Overview
 
 Implementations may use other status codes besides ones used in protocol.
 
-### End points
-
-**(GET) / (load request)**<a id="load-request"/>
+##<a id="load-request"/>(GET) / (load request)
 
 Returns file and file meta-information. If revision number parameter is specified method returns file of that specified revision otherwise last revision is returned
 
@@ -108,7 +106,7 @@ Patches a file and returns updated file.
 	  }
 	}
 
-<a name="join-request">**(GET) /join (join request)**</a>
+<a name="join-request"/>**(GET) /join (join request)**
 
 Client calls method when joining file collaboration and resolves used algorithm and extensions.
 
