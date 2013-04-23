@@ -154,6 +154,7 @@ WebSocket is an extension for the basic protocol and every implementation does n
 When extension is enabled it should be listed on [join request](#get-join-join-request) extensions list and "webSocketUrl" should be added under "response" -field of same request.
 
 *Format of the webSocketUrl is following:*
+
     protocol ":" "//" host ":" port path token
 
 **protocol** can be either ws or wss depending on whether TLS socket should be used.<br/>
