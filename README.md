@@ -17,7 +17,16 @@ REST API
 TODO Overview
 
 ### Status Codes
-TODO Status Codes
+
+<table>
+  <tr><td>200 - OK</td><td>Used when request has succeeded.</td></tr>
+  <tr><td>404 - Not Found</td><td>When requested file could not be found</td></tr>
+  <tr><td>409 - Conflict</td><td>When request has failed because of a conflict</td></tr>
+  <tr><td>500 - Internal Server Error</td><td>When request has failed unexpectedly</td></tr>
+  <tr><td>501 - Not Implemented</td><td>When client has requested for a unsupported feature</td></tr>
+</table>
+
+Implementations may use other status codes besides ones used in protocol.
 
 ### End points
 
@@ -103,8 +112,8 @@ TODO Status Codes
   <tr><td>Path</td><td>/join</td></tr>
   <tr><td>Method</td><td>GET</td></tr>
   <tr><td>Errors</td><td></td></tr>
-  <tr><td>&nbsp;&nbsp;&nbsp;404&nbsp;-&nbsp;Not Found</td><td>When file does not exist</td></tr>
-  <tr><td>&nbsp;&nbsp;&nbsp;501 - Not Implemented</td><td>When server does not support any algorithms provided by client and/or when unsupported CoOPS version is specified</td></tr>
+  <tr><td>&nbsp;&nbsp;&nbsp;404 - Not Found</td><td>When file does not exist</td></tr>
+  <tr><td width="155px">&nbsp;&nbsp;&nbsp;501 - Not Implemented</td><td>When server does not support any algorithms provided by client and/or when unsupported CoOPS version is specified</td></tr>
   <tr><td>Parameters</td><td>/</td></tr>
   <tr><td>&nbsp;&nbsp;&nbsp;algorithm</td><td>(Query) algorithm(s) supported by client. Parameter can be repeated to indicate support for multiple algorithms. In this case algorithms should be ordered descendingly from most favourable to least favourable algorithm</td></tr>
   <tr><td>&nbsp;&nbsp;&nbsp;protocolVersion</td><td>(Query) used CoOPS protocol version.</td></tr>
