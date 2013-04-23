@@ -195,6 +195,8 @@ Client sends a patch to server. Request has to contain revisionNumber field so s
 
 ***patch***
 
+Server sends a patch to a client.
+
     {
       "type": "patch",
       "patch": "patch content in used diff format",
