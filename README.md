@@ -18,7 +18,7 @@ TODO Overview
 
 ### Status Codes
 
-<table>
+<table width="100%">
   <tr><td>200 - OK</td><td>Used when request has succeeded.</td></tr>
   <tr><td>404 - Not Found</td><td>When requested file could not be found</td></tr>
   <tr><td>409 - Conflict</td><td>When request has failed because of a conflict</td></tr>
@@ -34,7 +34,7 @@ Implementations may use other status codes besides ones used in protocol.
 
 Returns file and file meta-information. If revision number parameter is specified method returns file of that specified revision otherwise last revision is returned
 
-<table>
+<table width="100%">
   <tr><td>Path</td><td>/</td></tr>
   <tr><td>Method</td><td>GET</td></tr>
   <tr><td>Errors</td><td></td></tr>
@@ -45,7 +45,7 @@ Returns file and file meta-information. If revision number parameter is specifie
 
 **Response**
 
-<table>
+<table width="100%">
   <tr><td>revisionNumber</td><td>Revision number of returned file.</td></tr>
   <tr><td>name</td><td>Name of the file</td></tr>
   <tr><td>content</td><td>Contents of the file as text. Binary files are serialized into text form</td></tr>
@@ -71,7 +71,7 @@ Returns file and file meta-information. If revision number parameter is specifie
 
 Patches a file and returns updated file.
 
-<table>
+<table width="100%">
   <tr><td>Path</td><td>/</td></tr>
   <tr><td>Method</td><td>PUT</td></tr>
   <tr><td>Errors</td><td></td></tr>
@@ -86,7 +86,7 @@ Patches a file and returns updated file.
 
 **Response**
 
-<table>
+<table width="100%">
   <tr><td>revisionNumber</td><td>Revision number of returned file.</td></tr>
   <tr><td>name</td><td>Name of the file</td></tr>
   <tr><td>content</td><td>Contents of the file as text. Binary files are serialized into text form</td></tr>
@@ -112,7 +112,7 @@ Patches a file and returns updated file.
 
 Client calls method when joining file collaboration and resolves used algorithm and extensions.
 
-<table>
+<table width="100%">
   <tr><td>Path</td><td>/join</td></tr>
   <tr><td>Method</td><td>GET</td></tr>
   <tr><td>Errors</td><td></td></tr>
@@ -125,7 +125,7 @@ Client calls method when joining file collaboration and resolves used algorithm 
 
 **Response**
 
-<table>
+<table width="100%">
   <tr><td>algorithm</td><td>Revision number of returned file.</td></tr>
   <tr><td>extensions</td><td>Available extensions.</td></tr>
 </table>
