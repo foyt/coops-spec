@@ -181,7 +181,7 @@ Messages always include "type" property that indicates a type of a message. Othe
 
 **Messages to server**
 
-*patch*
+***patch***
 
 Client sends a patch to server. Request has to contain revisionNumber field so server can check for version conflicts. Before sending next patch client should wait for patchAccepted or patchRejected message.
 
@@ -193,7 +193,7 @@ Client sends a patch to server. Request has to contain revisionNumber field so s
     
 **Messages to client**
 
-*patch*
+***patch***
 
     {
       "type": "patch",
@@ -202,7 +202,7 @@ Client sends a patch to server. Request has to contain revisionNumber field so s
       "checksum": content checksum for integrity checks (optional)
     }
 
-*patchAccepted*
+***patchAccepted***
 
 Server send a message that is has accepted patch client sent.
 
@@ -211,7 +211,7 @@ Server send a message that is has accepted patch client sent.
       "revisionNumber": number of revision patch is meant for
     }
     
-*patchRejected*
+***patchRejected***
 
 Server send a message that is has rejected patch client sent.
 
