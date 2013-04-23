@@ -28,7 +28,7 @@ TODO Overview
 
 Implementations may use other status codes besides ones used in protocol.
 
-### <a id="load-request"/>(GET) / (load request)
+### (GET) / (load request)
 
 Returns file and file meta-information. If revision number parameter is specified method returns file of that specified revision otherwise last revision is returned
 
@@ -65,7 +65,7 @@ Returns file and file meta-information. If revision number parameter is specifie
 	  }
 	}
 	
-**(PATCH) / (patch request)**<a id="patch-request"/>
+### (PATCH) / (patch request)
 
 Patches a file and returns updated file.
 
@@ -106,7 +106,7 @@ Patches a file and returns updated file.
 	  }
 	}
 
-<a name="join-request"/>**(GET) /join (join request)**
+### (GET) /join (join request)
 
 Client calls method when joining file collaboration and resolves used algorithm and extensions.
 
@@ -151,7 +151,7 @@ WebSocket is a extension for the basic protocol and every implementation does no
 
 **Protocol extensions**
 
-When extension is enabled it should be listed on [join request](#join-request) extensions list and "webSocketUrl" should be added under "response" -field of same request.
+When extension is enabled it should be listed on [join request](#get--join-request) extensions list and "webSocketUrl" should be added under "response" -field of same request.
 
     protocol ":" "//" host ":" port path token
 
