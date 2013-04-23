@@ -21,13 +21,13 @@ TODO Status Codes
 
 ### End points
 
-**(GET) /**
+**(GET) / (load request)**<a id="load-request"/>
 
 <table>
   <tr><td>Path</td><td>/</td></tr>
   <tr><td>Method</td><td>GET</td></tr>
   <tr><td>Errors</td><td></td></tr>
-  <tr><td>&nbsp;&nbsp;&nbsp;404&nbsp;-&nbsp;Not Found</td><td>When file does not exist</td></tr>
+  <tr><td style="white-space:nowrap">&nbsp;&nbsp;&nbsp;404 - Not Found</td><td>When file does not exist</td></tr>
   <tr><td>Parameters</td><td>/</td></tr>
   <tr><td>&nbsp;&nbsp;&nbsp;revisionNumber</td><td>(Query) Optional parameter that specifies file revision to be returned.</td></tr>
   <tr><td>Description</td><td>Returns file and file meta-information. If revision number parameter is specified method returns file of that specified revision otherwise last revision is returned</td></tr>
@@ -57,14 +57,14 @@ TODO Status Codes
 	  }
 	}
 	
-**(PATCH) /**
+**(PATCH) / (patch request)**<a id="patch-request"/>
 
 <table>
   <tr><td>Path</td><td>/</td></tr>
   <tr><td>Method</td><td>PUT</td></tr>
   <tr><td>Errors</td><td></td></tr>
-  <tr><td>&nbsp;&nbsp;&nbsp;404&nbsp;-&nbsp;Not Found</td><td>When file does not exist</td></tr>
-  <tr><td>&nbsp;&nbsp;&nbsp;409&nbsp;-&nbsp;Conflict</td><td>When server version does not match client version</td></tr>
+  <tr><td>&nbsp;&nbsp;&nbsp;404 - Not Found</td><td>When file does not exist</td></tr>
+  <tr><td>&nbsp;&nbsp;&nbsp;409 - Conflict</td><td>When server version does not match client version</td></tr>
   <tr><td>Parameters</td><td>/</td></tr>
   <tr><td>&nbsp;&nbsp;&nbsp;revisionNumber</td><td>(JSON) number of revision patch is meant for</td></tr>
   <tr><td>&nbsp;&nbsp;&nbsp;name</td><td>(JSON) optional field that instructs name change if specified</td></tr>
@@ -97,7 +97,7 @@ TODO Status Codes
 	  }
 	}
 
-**(GET) /join**
+**(GET) /join (join request)**<a id="join-request"/>
 
 <table>
   <tr><td>Path</td><td>/join</td></tr>
@@ -115,23 +115,96 @@ TODO Status Codes
 
 <table>
   <tr><td>algorithm</td><td>Revision number of returned file.</td></tr>
-  <tr><td>extensions</td><td>Revision number of returned file.</td></tr>
+  <tr><td>extensions</td><td>Available extensions.</td></tr>
 </table>
 
 **Example response**
 
     { 
-      algorithm: "diff-match-patch",
-        extensions: [
-		  "websockets", 
-		  "cursors"
-		]
+      "response": { 
+        "algorithm": "diff-match-patch",
+        "extensions": [
+	      "websockets", 
+	  	  "cursors"
+        ]
 	  }
 	}
+    
 		
 EXTENSIONS
 ----------
 TODO Overview
 
 ### WebSocket
-TODO Describe WebSocket extension
+
+WebSocket is a extension for the basic protocol and every implementation does not necessary need to implement it. WebSockets provide faster and lighter way for server and client to communicate.
+
+**Protocol extensions**
+
+When extension is enabled it should be listed on [join request](#join-request) extensions list and "webSocketUrl" should be added under "response" -field of same request.
+
+    protocol ":" "//" host ":" port path token
+
+	**protocol** can be either ws or wss depending on whether TLS socket should be used.
+	**host** is a host where server is located
+	**path** path to a file
+	**token** optional token which can be used to authenticate incoming socket connection  
+	
+*Example url*
+
+    "ws://www.example.com:80/path/to/file/token"    
+    
+**Messages**
+
+Instead of standard protocol API calls communication between server and client is done via WebSocket messages. 
+
+**Message format**
+
+Messages always include "type" property that indicates a type of a message. Other properties depend on the message type.
+
+    {
+      "type": "MESSAGE TYPE",
+      "PROPERTY NAME": "PROPERTY VALUE"
+    }
+
+**Messages to server**
+
+*patch*
+
+Client sends a patch to server. Request has to contain revisionNumber field so server can check for version conflicts. Before sending next patch client should wait for patchAccepted or patchRejected message.
+
+    {
+      "type": "patch",
+      "patch": "patch content in used diff format",
+      "revisionNumber": number of revision patch is meant for
+    }
+    
+**Messages to client**
+
+*patch*
+
+    {
+      "type": "patch",
+      "patch": "patch content in used diff format",
+      "revisionNumber": number of revision patch is meant for,
+      "checksum": content checksum for integrity checks (optional)
+    }
+
+*patchAccepted*
+
+Server send a message that is has accepted patch client sent.
+
+    {
+      "type": "patchAccepted",
+      "revisionNumber": number of revision patch is meant for
+    }
+    
+*patchRejected*
+
+Server send a message that is has rejected patch client sent.
+
+    {
+      "type": "patchAccepted",
+      "revisionNumber": number of revision patch is meant for,
+      "reason": "reason for rejection"
+    }
