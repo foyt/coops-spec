@@ -28,7 +28,7 @@ TODO Overview
 
 Implementations may use other status codes besides ones used in protocol.
 
-##<a id="load-request"/>(GET) / (load request)
+### <a id="load-request"/>(GET) / (load request)
 
 Returns file and file meta-information. If revision number parameter is specified method returns file of that specified revision otherwise last revision is returned
 
