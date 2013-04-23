@@ -104,7 +104,7 @@ TODO Status Codes
   <tr><td>Method</td><td>GET</td></tr>
   <tr><td>Errors</td><td></td></tr>
   <tr><td>&nbsp;&nbsp;&nbsp;404&nbsp;-&nbsp;Not Found</td><td>When file does not exist</td></tr>
-  <tr><td>&nbsp;&nbsp;&nbsp;501&nbsp;-&nbsp;Not Implemented</td><td>When server does not support any algorithms provided by client and/or when unsupported CoOPS version is specified</td></tr>
+  <tr><td style="white-space:nowrap">&nbsp;&nbsp;&nbsp;501 - Not Implemented</td><td>When server does not support any algorithms provided by client and/or when unsupported CoOPS version is specified</td></tr>
   <tr><td>Parameters</td><td>/</td></tr>
   <tr><td>&nbsp;&nbsp;&nbsp;algorithm</td><td>(Query) algorithm(s) supported by client. Parameter can be repeated to indicate support for multiple algorithms. In this case algorithms should be ordered descendingly from most favourable to least favourable algorithm</td></tr>
   <tr><td>&nbsp;&nbsp;&nbsp;protocolVersion</td><td>(Query) used CoOPS protocol version.</td></tr>
