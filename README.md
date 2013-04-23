@@ -108,7 +108,7 @@ Patches a file and returns updated file.
 	  }
 	}
 
-**(GET) /join (join request)**<a id="join-request"/>
+<a name="join-request">**(GET) /join (join request)**</a>
 
 Client calls method when joining file collaboration and resolves used algorithm and extensions.
 
@@ -157,10 +157,10 @@ When extension is enabled it should be listed on [join request](#join-request) e
 
     protocol ":" "//" host ":" port path token
 
-	**protocol** can be either ws or wss depending on whether TLS socket should be used.
-	**host** is a host where server is located
-	**path** path to a file
-	**token** optional token which can be used to authenticate incoming socket connection  
+**protocol** can be either ws or wss depending on whether TLS socket should be used.
+**host** is a host where server is located
+**path** path to a file
+**token** optional token which can be used to authenticate incoming socket connection  
 	
 *Example url*
 
