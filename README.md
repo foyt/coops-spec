@@ -147,19 +147,20 @@ TODO Overview
 
 ### WebSocket
 
-WebSocket is a extension for the basic protocol and every implementation does not necessary need to implement it. WebSockets provide faster and lighter way for server and client to communicate.
+WebSocket is an extension for the basic protocol and every implementation does not necessary need to implement it. WebSockets provide faster and lighter way for server and client to communicate.
 
 **Protocol extensions**
 
-When extension is enabled it should be listed on [join request](#get--join-request) extensions list and "webSocketUrl" should be added under "response" -field of same request.
+When extension is enabled it should be listed on [join request](#get-join-join-request) extensions list and "webSocketUrl" should be added under "response" -field of same request.
 
+*Format of the webSocketUrl is following:*
     protocol ":" "//" host ":" port path token
 
-**protocol** can be either ws or wss depending on whether TLS socket should be used.
-**host** is a host where server is located
-**path** path to a file
-**token** optional token which can be used to authenticate incoming socket connection  
-	
+**protocol** can be either ws or wss depending on whether TLS socket should be used.<br/>
+**host** is a host where server is located<br/>
+**path** path to a file<br/>
+**token** optional token which can be used to authenticate incoming socket connection <br/>
+
 *Example url*
 
     "ws://www.example.com:80/path/to/file/token"    
