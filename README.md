@@ -37,7 +37,7 @@ Implementations may use other status codes besides ones used in protocol.
   <tr><td>Method</td><td>GET</td></tr>
   <tr><td>Errors</td><td></td></tr>
   <tr><td width="120px">&nbsp;&nbsp;&nbsp;404 - Not Found</td><td>When file does not exist</td></tr>
-  <tr><td>Parameters</td><td>/</td></tr>
+  <tr><td colspan="2">Parameters</td><td></td></tr>
   <tr><td>&nbsp;&nbsp;&nbsp;revisionNumber</td><td>(Query) Optional parameter that specifies file revision to be returned.</td></tr>
   <tr><td>Description</td><td>Returns file and file meta-information. If revision number parameter is specified method returns file of that specified revision otherwise last revision is returned</td></tr>
 </table>
@@ -74,7 +74,7 @@ Implementations may use other status codes besides ones used in protocol.
   <tr><td>Errors</td><td></td></tr>
   <tr><td>&nbsp;&nbsp;&nbsp;404 - Not Found</td><td>When file does not exist</td></tr>
   <tr><td>&nbsp;&nbsp;&nbsp;409 - Conflict</td><td>When server version does not match client version</td></tr>
-  <tr><td>Parameters</td><td>/</td></tr>
+  <tr><td>Parameters</td><td></td></tr>
   <tr><td>&nbsp;&nbsp;&nbsp;revisionNumber</td><td>(JSON) number of revision patch is meant for</td></tr>
   <tr><td>&nbsp;&nbsp;&nbsp;name</td><td>(JSON) optional field that instructs name change if specified</td></tr>
   <tr><td>&nbsp;&nbsp;&nbsp;patch</td><td>(JSON) optional field that contains changes to content in used diff format</td></tr>
@@ -114,7 +114,7 @@ Implementations may use other status codes besides ones used in protocol.
   <tr><td>Errors</td><td></td></tr>
   <tr><td>&nbsp;&nbsp;&nbsp;404 - Not Found</td><td>When file does not exist</td></tr>
   <tr><td width="155px">&nbsp;&nbsp;&nbsp;501 - Not Implemented</td><td>When server does not support any algorithms provided by client and/or when unsupported CoOPS version is specified</td></tr>
-  <tr><td>Parameters</td><td>/</td></tr>
+  <tr><td>Parameters</td><td></td></tr>
   <tr><td>&nbsp;&nbsp;&nbsp;algorithm</td><td>(Query) algorithm(s) supported by client. Parameter can be repeated to indicate support for multiple algorithms. In this case algorithms should be ordered descendingly from most favourable to least favourable algorithm</td></tr>
   <tr><td>&nbsp;&nbsp;&nbsp;protocolVersion</td><td>(Query) used CoOPS protocol version.</td></tr>
   <tr><td>Description</td><td>Client calls method when joining file collaboration and resolves used algorithm and extensions.</td></tr>
