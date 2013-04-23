@@ -32,6 +32,8 @@ Implementations may use other status codes besides ones used in protocol.
 
 **(GET) / (load request)**<a id="load-request"/>
 
+Returns file and file meta-information. If revision number parameter is specified method returns file of that specified revision otherwise last revision is returned
+
 <table>
   <tr><td>Path</td><td>/</td></tr>
   <tr><td>Method</td><td>GET</td></tr>
@@ -39,7 +41,6 @@ Implementations may use other status codes besides ones used in protocol.
   <tr><td width="120px">&nbsp;&nbsp;&nbsp;404 - Not Found</td><td>When file does not exist</td></tr>
   <tr><td>Parameters</td><td></td></tr>
   <tr><td>&nbsp;&nbsp;&nbsp;revisionNumber</td><td>(Query) Optional parameter that specifies file revision to be returned.</td></tr>
-  <tr><td>Description</td><td>Returns file and file meta-information. If revision number parameter is specified method returns file of that specified revision otherwise last revision is returned</td></tr>
 </table>
 
 **Response**
@@ -68,6 +69,8 @@ Implementations may use other status codes besides ones used in protocol.
 	
 **(PATCH) / (patch request)**<a id="patch-request"/>
 
+Patches a file and returns updated file.
+
 <table>
   <tr><td>Path</td><td>/</td></tr>
   <tr><td>Method</td><td>PUT</td></tr>
@@ -79,7 +82,6 @@ Implementations may use other status codes besides ones used in protocol.
   <tr><td>&nbsp;&nbsp;&nbsp;name</td><td>(JSON) optional field that instructs name change if specified</td></tr>
   <tr><td>&nbsp;&nbsp;&nbsp;patch</td><td>(JSON) optional field that contains changes to content in used diff format</td></tr>
   <tr><td>&nbsp;&nbsp;&nbsp;properties</td><td>(JSON) optional field that contains changed metadata as key-value pairs (JSON Object)</td></tr>
-  <tr><td>Description</td><td>Patches a file and returns updated file.</td></tr>
 </table>
 
 **Response**
@@ -108,6 +110,8 @@ Implementations may use other status codes besides ones used in protocol.
 
 **(GET) /join (join request)**<a id="join-request"/>
 
+Client calls method when joining file collaboration and resolves used algorithm and extensions.
+
 <table>
   <tr><td>Path</td><td>/join</td></tr>
   <tr><td>Method</td><td>GET</td></tr>
@@ -117,7 +121,6 @@ Implementations may use other status codes besides ones used in protocol.
   <tr><td>Parameters</td><td></td></tr>
   <tr><td>&nbsp;&nbsp;&nbsp;algorithm</td><td>(Query) algorithm(s) supported by client. Parameter can be repeated to indicate support for multiple algorithms. In this case algorithms should be ordered descendingly from most favourable to least favourable algorithm</td></tr>
   <tr><td>&nbsp;&nbsp;&nbsp;protocolVersion</td><td>(Query) used CoOPS protocol version.</td></tr>
-  <tr><td>Description</td><td>Client calls method when joining file collaboration and resolves used algorithm and extensions.</td></tr>
 </table>
 
 **Response**
