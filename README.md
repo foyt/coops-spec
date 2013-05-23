@@ -12,6 +12,10 @@ Protocol also defines way to transfer meta-information besides normal file conte
 
 It makes sense to use different diff / patch algorithms for different file types. For this reason, client and the server negotiate used diff / patch algorithmic before starting.	
 
+STATUS
+--------
+This document is currently just a draft of the specification and it's constantly evolving. Specification is done in hand in hand with the reference implementation so most recent state can be found from https://github.com/foyt/coops-server-node/
+
 REST API
 --------
 TODO Overview
