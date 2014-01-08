@@ -1,24 +1,23 @@
-CoOPS protocol specification 1.0draft 1
-====================================
+CoOPS protocol specification 1.0
+================================
 
 OVERVIEW
 --------
 
 CoOPS is a protocol which allows users to simultaneously edit a file in a server. The protocol focuses on the core of the simultaneous editing, leaving out other functions - such as user management, file creation, file deletion, etc. These functions are extensions to the basic protocol. The protocol defines the client-server communication using HTTP protocol.
 
-The protocol assumes that each file is located in a address that can be used for file identification (URL). All protocol operations are relative to this address. This allows the protocol to be used in variety of different contexts, such as editing of html document, a paragraph of a wiki page or a svg image. Because the editing environment (blog, wiki, etc. server program) usually contains user registration and authentication functions these are left out of the scope of protocol. Communication between server and client is done via HTTP protocol using JSON formatted data.
+The protocol assumes that each file is located in an address that can be used for file identification (URL). All protocol operations are relative to this address. This allows the protocol to be used in variety of different contexts, such as editing of html document, a paragraph of a wiki page or a svg image. Because the editing environment (blog, wiki, etc. server program) usually contains user registration and authentication functions these are left out of the scope of protocol. Communication between server and client is done via HTTP protocol using JSON formatted data.
 
 Protocol also defines way to transfer meta-information besides normal file content. 
 
-It makes sense to use different diff / patch algorithms for different file types. For this reason, client and the server negotiate used diff / patch algorithmic before starting.	
+It makes sense to use different diff / patch algorithms for different file types. For this reason, client and the server negotiate used diff / patch algorithm before starting.
 
 STATUS
 --------
-This document is currently just a draft of the specification and it's constantly evolving. Specification is done in hand in hand with the reference implementation so most recent state can be found from https://github.com/foyt/coops-server-node/
+Protocol version is currently 1.0
 
 REST API
 --------
-TODO Overview
 
 ### Status Codes
 
@@ -34,7 +33,7 @@ Implementations may use other status codes besides ones used in protocol.
 
 ### (GET) / (load request)
 
-Returns file and file meta-information. If revision number parameter is specified method returns file of that specified revision otherwise last revision is returned
+Returns a file and file meta-information. If revision number parameter is specified method returns file of that specified revision otherwise last revision is returned
 
 <table width="100%">
   <tr><td>Path</td><td>/</td></tr>
@@ -48,8 +47,7 @@ Returns file and file meta-information. If revision number parameter is specifie
 **Response**
 
 <table width="100%">
-  <tr><td>revisionNumber</td><td>Revision number of returned file.</td></tr>
-  <tr><td>name</td><td>Name of the file</td></tr>
+  <tr><td>revisionNumber</td><td>Revision number of a returned file.</td></tr>
   <tr><td>content</td><td>Contents of the file as text. Binary files are serialized into text form</td></tr>
   <tr><td>contentType</td><td>Content type of the file. If file needs to be edited by some specific editor "editor" -parameter can be used to specify which one</td></tr>
   <tr><td>properties</td><td>File metadata as key-value pairs (JSON Object).</td></tr>
@@ -60,59 +58,38 @@ Returns file and file meta-information. If revision number parameter is specifie
     { 
       "response": {
         "revisionNumber": 123,
-        "name": "name",
         "content": "CONTENT",
         "contentType": "text/html;editor=CKEditor",
         "properties": {
-            "backgroundColor": "green"
+          "name": "Name of the file",
+          "backgroundColor": "green"
         }
 	  }
 	}
 	
 ### (PATCH) / (patch request)
 
-Patches a file and returns updated file.
+Patches a file.
 
 <table width="100%">
   <tr><td>Path</td><td>/</td></tr>
   <tr><td>Method</td><td>PUT</td></tr>
   <tr><td>Errors</td><td></td></tr>
   <tr><td>&nbsp;&nbsp;&nbsp;404 - Not Found</td><td>When file does not exist</td></tr>
-  <tr><td>&nbsp;&nbsp;&nbsp;409 - Conflict</td><td>When server version does not match client version</td></tr>
+  <tr><td>&nbsp;&nbsp;&nbsp;409 - Conflict</td><td>When server file revision does not match client file revision</td></tr>
   <tr><td>Parameters</td><td></td></tr>
   <tr><td>&nbsp;&nbsp;&nbsp;revisionNumber</td><td>(JSON) number of revision patch is meant for</td></tr>
-  <tr><td>&nbsp;&nbsp;&nbsp;name</td><td>(JSON) optional field that instructs name change if specified</td></tr>
-  <tr><td>&nbsp;&nbsp;&nbsp;patch</td><td>(JSON) optional field that contains changes to content in used diff format</td></tr>
+  <tr><td>&nbsp;&nbsp;&nbsp;patch</td><td>(JSON) optional field that contains changes to the file content in used diff format</td></tr>  
   <tr><td>&nbsp;&nbsp;&nbsp;properties</td><td>(JSON) optional field that contains changed metadata as key-value pairs (JSON Object)</td></tr>
 </table>
 
 **Response**
 
-<table width="100%">
-  <tr><td>revisionNumber</td><td>Revision number of returned file.</td></tr>
-  <tr><td>name</td><td>Name of the file</td></tr>
-  <tr><td>content</td><td>Contents of the file as text. Binary files are serialized into text form</td></tr>
-  <tr><td>contentType</td><td>Content type of the file. If file needs to be edited by some specific editor "editor" -parameter can be used to specify which one</td></tr>
-  <tr><td>properties</td><td>File metadata as key-value pairs (JSON Object)</td></tr>
-</table>
-
-**Example response**
-
-    { 
-      "response": {
-        "revisionNumber": 123,
-        "name": "name",
-        "content": "CONTENT",
-        "contentType": "text/html;editor=CKEditor",
-        "properties": {
-            "backgroundColor": "green"
-        }
-	  }
-	}
+Successful request returns status code 204 (No Content) and does not return any content. 
 
 ### (GET) /join (join request)
 
-Client calls method when joining file collaboration and resolves used algorithm and extensions.
+Client calls the method in order to join the collaboration session.
 
 <table width="100%">
   <tr><td>Path</td><td>/join</td></tr>
@@ -130,6 +107,11 @@ Client calls method when joining file collaboration and resolves used algorithm 
 <table width="100%">
   <tr><td>algorithm</td><td>Revision number of returned file.</td></tr>
   <tr><td>extensions</td><td>Available extensions.</td></tr>
+  <tr><td>revisionNumber</td><td>Current revision number of the file</td></tr>
+  <tr><td>content</td><td>Current content of the file</td></tr>
+  <tr><td>contentType</td><td>Current content type of the file</td></tr>
+  <tr><td>properties</td><td>Current properties of the file as key-value pairs (JSON Object)</td></tr>
+  <tr><td>sessionId</td><td>Unique collaboration session id</td></tr>
 </table>
 
 **Example response**
@@ -140,89 +122,13 @@ Client calls method when joining file collaboration and resolves used algorithm 
         "extensions": [
 	      "websockets", 
 	  	  "cursors"
-        ]
+        ],
+        "revisionNumber": 123,
+        "content": "CONTENT",
+        "contentType": "text/html;editor=CKEditor",
+        "properties": {
+          "name": "Name of the file",
+          "backgroundColor": "green"
+        }
 	  }
 	}
-    
-		
-EXTENSIONS
-----------
-TODO Overview
-
-### WebSocket
-
-WebSocket is an extension for the basic protocol and every implementation does not necessary need to implement it. WebSockets provide faster and lighter way for server and client to communicate.
-
-**Protocol extensions**
-
-When extension is enabled it should be listed on [join request](#get-join-join-request) extensions list and "webSocketUrl" should be added under "response" -field of same request.
-
-*Format of the webSocketUrl is following:*
-
-    protocol ":" "//" host ":" port path token
-
-**protocol** can be either ws or wss depending on whether TLS socket should be used.<br/>
-**host** is a host where server is located<br/>
-**path** path to a file<br/>
-**token** optional token which can be used to authenticate incoming socket connection <br/>
-
-*Example url*
-
-    "ws://www.example.com:80/path/to/file/token"    
-    
-**Messages**
-
-Instead of standard protocol API calls communication between server and client is done via WebSocket messages. 
-
-**Message format**
-
-Messages always include "type" property that indicates a type of a message. Other properties depend on the message type.
-
-    {
-      "type": "MESSAGE TYPE",
-      "PROPERTY NAME": "PROPERTY VALUE"
-    }
-
-**Messages to server**
-
-***patch***
-
-Client sends a patch to server. Request has to contain revisionNumber field so server can check for version conflicts. Before sending next patch client should wait for patchAccepted or patchRejected message.
-
-    {
-      "type": "patch",
-      "patch": "patch content in used diff format",
-      "revisionNumber": number of revision patch is meant for
-    }
-    
-**Messages to client**
-
-***patch***
-
-Server sends a patch to a client.
-
-    {
-      "type": "patch",
-      "patch": "patch content in used diff format",
-      "revisionNumber": number of revision patch is meant for,
-      "checksum": content checksum for integrity checks (optional)
-    }
-
-***patchAccepted***
-
-Server send a message that is has accepted patch client sent.
-
-    {
-      "type": "patchAccepted",
-      "revisionNumber": number of revision patch is meant for
-    }
-    
-***patchRejected***
-
-Server send a message that is has rejected patch client sent.
-
-    {
-      "type": "patchAccepted",
-      "revisionNumber": number of revision patch is meant for,
-      "reason": "reason for rejection"
-    }
