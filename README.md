@@ -1,5 +1,5 @@
-CoOPS protocol specification 1.0
-================================
+CoOPS protocol specification 1.0.0
+==================================
 
 OVERVIEW
 --------
@@ -14,7 +14,7 @@ It makes sense to use different diff / patch algorithms for different file types
 
 STATUS
 --------
-Protocol version is currently 1.0
+Protocol version is currently 1.0.0
 
 REST API
 --------
@@ -105,30 +105,33 @@ Client calls the method in order to join the collaboration session.
 **Response**
 
 <table width="100%">
+  <tr><td>sessionId</td><td>Unique collaboration session id</td></tr>
   <tr><td>algorithm</td><td>Revision number of returned file.</td></tr>
-  <tr><td>extensions</td><td>Available extensions.</td></tr>
   <tr><td>revisionNumber</td><td>Current revision number of the file</td></tr>
   <tr><td>content</td><td>Current content of the file</td></tr>
   <tr><td>contentType</td><td>Current content type of the file</td></tr>
   <tr><td>properties</td><td>Current properties of the file as key-value pairs (JSON Object)</td></tr>
-  <tr><td>sessionId</td><td>Unique collaboration session id</td></tr>
+  <tr><td>extensions</td><td>Supported extensions as key-value map (JSON Object). Extension names are listed as keys and values are settings of extension as key-value pair (JSON Object) </td></tr>
 </table>
 
 **Example response**
 
     { 
       "response": { 
+        "sessionId": "1a79a4d60de6718e8e5b326e338ae533",
         "algorithm": "diff-match-patch",
-        "extensions": [
-	      "websockets", 
-	  	  "cursors"
-        ],
         "revisionNumber": 123,
         "content": "CONTENT",
         "contentType": "text/html;editor=CKEditor",
         "properties": {
           "name": "Name of the file",
           "backgroundColor": "green"
+        },
+        "extensions": {
+	      "websockets": {
+            "unsecureWebSocketUrl": "ws://www.example.com:80/path/to/file/token",
+            "secureWebSocketUrl": "wss://www.example.com:8443/path/to/file/token"
+	      }
         }
 	  }
 	}
