@@ -56,17 +56,58 @@ Returns a file and file meta-information. If revision number parameter is specif
 **Example response**
 
     { 
-      "response": {
-        "revisionNumber": 123,
-        "content": "CONTENT",
-        "contentType": "text/html;editor=CKEditor",
-        "properties": {
-          "name": "Name of the file",
-          "backgroundColor": "green"
-        }
-	  }
+      "revisionNumber": 123,
+      "content": "CONTENT",
+      "contentType": "text/html;editor=CKEditor",
+      "properties": {
+        "name": "Name of the file",
+        "backgroundColor": "green"
+      }
 	}
-	
+
+### (GET) /update (update request)
+
+Client calls the method in order to check new updates into the file.
+
+<table width="100%">
+  <tr><td>Path</td><td>/update</td></tr>
+  <tr><td>Method</td><td>GET</td></tr>
+  <tr><td>Errors</td><td></td></tr>
+  <tr><td width="165px">&nbsp;&nbsp;&nbsp;500 - Internal Server Error</td><td>When revisionNumber parameter is missing</td></tr>
+  <tr><td>Parameters</td><td></td></tr>
+  <tr><td>&nbsp;&nbsp;&nbsp;revisionNumber</td><td>(Query) Revision number of client file.</td></tr>
+</table>
+
+**Response**
+
+<table width="100%">
+  <tr><td>sessionId</td><td>Unique collaboration session id</td></tr>
+  <tr><td>revisionNumber</td><td>Revision number of the patch</td></tr>
+  <tr><td>checksum</td><td>Content checksum for integrity checks (optional)</td></tr>
+  <tr><td>patch</td><td>Changes into the file content in used diff format</td></tr>
+  <tr><td>properties</td><td>Changed properties as key-value pairs (JSON Object)</td></tr>
+  <tr><td>extensions</td><td>Changed extension values as key-value map (JSON Object). Extension names act as keys and changes are represented in key-value pairs (JSON Object) </td></tr>
+</table>
+
+**Example response**
+
+    [{ 
+      "sessionId": "1a79a4d60de6718e8e5b326e338ae533",
+      "revisionNumber": 123,
+      "checksum": "1a79a4d60de6718e8e5b326e338ae533",
+      "patch": "patch text",
+      "properties": {
+        "name": "Name of the file",
+        "backgroundColor": "green"
+      },
+      "extensions": {
+	    "cursors": {
+          "selectStart": 199,
+          "selectEnd": 200
+	    }
+      }
+	}, ... ]
+		
 ### (PATCH) / (patch request)
 
 Patches a file.
@@ -117,21 +158,19 @@ Client calls the method in order to join the collaboration session.
 **Example response**
 
     { 
-      "response": { 
-        "sessionId": "1a79a4d60de6718e8e5b326e338ae533",
-        "algorithm": "diff-match-patch",
-        "revisionNumber": 123,
-        "content": "CONTENT",
-        "contentType": "text/html;editor=CKEditor",
-        "properties": {
-          "name": "Name of the file",
-          "backgroundColor": "green"
-        },
-        "extensions": {
-	      "websockets": {
-            "unsecureWebSocketUrl": "ws://www.example.com:80/path/to/file/token",
-            "secureWebSocketUrl": "wss://www.example.com:8443/path/to/file/token"
-	      }
-        }
-	  }
+      "sessionId": "1a79a4d60de6718e8e5b326e338ae533",
+      "algorithm": "diff-match-patch",
+      "revisionNumber": 123,
+      "content": "CONTENT",
+      "contentType": "text/html;editor=CKEditor",
+      "properties": {
+        "name": "Name of the file",
+        "backgroundColor": "green"
+      },
+      "extensions": {
+	    "websockets": {
+          "unsecureWebSocketUrl": "ws://www.example.com:80/path/to/file/token",
+          "secureWebSocketUrl": "wss://www.example.com:8443/path/to/file/token"
+	    }
+      }
 	}
