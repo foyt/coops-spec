@@ -46,6 +46,8 @@ Returns a file and file meta-information. If revision number parameter is specif
 
 **Response**
 
+Status code should be 200 when request is successful.  
+
 <table width="100%">
   <tr><td>revisionNumber</td><td>Revision number of a returned file.</td></tr>
   <tr><td>content</td><td>Contents of the file as text. Binary files are serialized into text form</td></tr>
@@ -79,6 +81,8 @@ Client calls the method in order to check new updates into the file.
 </table>
 
 **Response**
+
+Status code should 200 (OK) when server has updates for client and 204 (No Content) when updates are not available. When server sends 204 no content should be sent.
 
 <table width="100%">
   <tr><td>sessionId</td><td>Unique collaboration session id</td></tr>
@@ -144,6 +148,8 @@ Client calls the method in order to join the collaboration session.
 </table>
 
 **Response**
+
+Status code should be 200 if the request is successful
 
 <table width="100%">
   <tr><td>sessionId</td><td>Unique collaboration session id</td></tr>
