@@ -1,4 +1,4 @@
-CoOPS protocol specification 1.0.0
+CoOPS protocol specification 1.0.0![image](http://openclipart.org/image/128px/svg_to_png/169130/1332759102.png)
 ==================================
 
 OVERVIEW
@@ -75,8 +75,9 @@ Client calls the method in order to check new updates into the file.
   <tr><td>Path</td><td>/update</td></tr>
   <tr><td>Method</td><td>GET</td></tr>
   <tr><td>Errors</td><td></td></tr>
-  <tr><td width="165px">&nbsp;&nbsp;&nbsp;500 - Internal Server Error</td><td>When revisionNumber parameter is missing</td></tr>
+  <tr><td width="165px">&nbsp;&nbsp;&nbsp;400 - Bad request </td><td>When revisionNumber parameter is missing</td></tr>
   <tr><td>Parameters</td><td></td></tr>
+  <tr><td>&nbsp;&nbsp;&nbsp;sessionId</td><td>(Query) Unique collaboration session id.</td></tr>
   <tr><td>&nbsp;&nbsp;&nbsp;revisionNumber</td><td>(Query) Revision number of client file.</td></tr>
 </table>
 
@@ -126,6 +127,7 @@ Patches a file.
   <tr><td>&nbsp;&nbsp;&nbsp;revisionNumber</td><td>(JSON) number of revision patch is meant for</td></tr>
   <tr><td>&nbsp;&nbsp;&nbsp;patch</td><td>(JSON) optional field that contains changes to the file content in used diff format</td></tr>  
   <tr><td>&nbsp;&nbsp;&nbsp;properties</td><td>(JSON) optional field that contains changed metadata as key-value pairs (JSON Object)</td></tr>
+  <tr><td>&nbsp;&nbsp;&nbsp;extensions</td><td>(JSON) optional field that contains extension changes as key-value pairs (JSON Object)</td></tr>
 </table>
 
 **Response**
