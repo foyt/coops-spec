@@ -1,4 +1,4 @@
-CoOPS protocol specification 1.0.0![image](http://openclipart.org/image/128px/svg_to_png/169130/1332759102.png)
+CoOPS protocol specification 1.0.0
 ==================================
 
 OVERVIEW
