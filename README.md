@@ -124,10 +124,11 @@ Patches a file.
   <tr><td>&nbsp;&nbsp;&nbsp;404 - Not Found</td><td>When file does not exist</td></tr>
   <tr><td>&nbsp;&nbsp;&nbsp;409 - Conflict</td><td>When server file revision does not match client file revision</td></tr>
   <tr><td>Parameters</td><td></td></tr>
-  <tr><td>&nbsp;&nbsp;&nbsp;revisionNumber</td><td>(JSON) number of revision patch is meant for</td></tr>
-  <tr><td>&nbsp;&nbsp;&nbsp;patch</td><td>(JSON) optional field that contains changes to the file content in used diff format</td></tr>  
-  <tr><td>&nbsp;&nbsp;&nbsp;properties</td><td>(JSON) optional field that contains changed metadata as key-value pairs (JSON Object)</td></tr>
-  <tr><td>&nbsp;&nbsp;&nbsp;extensions</td><td>(JSON) optional field that contains extension changes as key-value pairs (JSON Object)</td></tr>
+  <tr><td>&nbsp;&nbsp;&nbsp;sessionId</td><td>(JSON) an unique collaboration session id</td></tr>
+  <tr><td>&nbsp;&nbsp;&nbsp;revisionNumber</td><td>(JSON) a number of revision patch is meant for</td></tr>
+  <tr><td>&nbsp;&nbsp;&nbsp;patch</td><td>(JSON) an optional field that contains changes to the file content in used diff format</td></tr>  
+  <tr><td>&nbsp;&nbsp;&nbsp;properties</td><td>(JSON) an optional field that contains changed metadata as key-value pairs (JSON Object)</td></tr>
+  <tr><td>&nbsp;&nbsp;&nbsp;extensions</td><td>(JSON) an optional field that contains extension changes as key-value pairs (JSON Object)</td></tr>
 </table>
 
 **Response**
