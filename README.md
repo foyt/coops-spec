@@ -119,7 +119,7 @@ Patches a file.
 
 <table width="100%">
   <tr><td>Path</td><td>/</td></tr>
-  <tr><td>Method</td><td>PUT</td></tr>
+  <tr><td>Method</td><td>PATCH</td></tr>
   <tr><td>Errors</td><td></td></tr>
   <tr><td>&nbsp;&nbsp;&nbsp;404 - Not Found</td><td>When file does not exist</td></tr>
   <tr><td>&nbsp;&nbsp;&nbsp;409 - Conflict</td><td>When server file revision does not match client file revision</td></tr>
